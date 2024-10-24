@@ -1,0 +1,248 @@
+<script setup lang="ts">
+import fhirConf from './fhirConfig.json';
+import fhirJson from './fhir.json'
+import { createApp } from 'vue';
+import App from './app.vue';
+import row from './components/row.vue';
+import toolbar from './components/toolbar.vue';
+import PrimeVue from 'primevue/config';
+import Aura from '@primevue/themes/aura';
+import 'primeicons/primeicons.css'
+import Row from 'primevue/row';
+
+const app = createApp(App);
+app.use(PrimeVue, {
+  theme: {
+    preset: Aura
+  }
+});
+
+
+let fhirEntrysJson = {
+        "Composition" : [],
+        "Patient" : [],
+        "Practitioner" : [],
+        "Organization" : [],
+        "Encounter" : [],
+        "Condition" : [],
+        "Observation" : [],
+        "AllergyIntolerance" : [],
+        "FamilyMemberHistory" : [],
+        "MedicationRequest" : [],
+        "Bundle" : [],
+        "CarePlan" : [],
+        "Procedure" : [],
+        "ImagingStudy" : [],
+        "DiagnosticReport" : [],
+        "Device" : [],
+        "DeviceUseStatement" : [],
+        "Immunization" : [],
+        "Consent" : [],
+        "RelatedPerson" : [],
+        "ResearchStudy" : [],
+        "ResearchSubject" : [],
+        "DocumentReference" : []
+};
+
+// let resourceTypes = fhirConf.resourceTypes;
+let resourceTypes = Object.keys(fhirEntrysJson);
+
+
+
+// const keyFmts = [
+//   "resourceType",
+//   "id",
+//   "meta-lastUpdated",
+//   "meta-profile-[]",
+//   "language",
+//   "identifier-system",
+//   "identifier-value",
+//   "type",
+//   "timestamp",
+//   "entry-[]-fullUrl",
+//   "entry-[]-resource-resourceType", //表示
+//   "entry-[]-resource-id",
+//   "entry-[]-resource-meta",
+//   "entry-[]-resource-lastUpdated",
+//   "entry-[]-resource-profile",
+//   "entry-[]-resource-meta-lastUpdated",
+//   "entry-[]-resource-meta-profile-[]",
+//   "entry-[]-resource-language",
+//   "entry-[]-resource-text-status",
+//   "entry-[]-resource-text-div",
+//   "entry-[]-resource-extension-url",
+//   "entry-[]-resource-extension-valueString",
+//   "entry-[]-resource-identifier",
+//   "entry-[]-resource-system",
+//   "entry-[]-resource-value",
+//   "entry-[]-resource-status",
+//   "entry-[]-resource-type-coding-[]-system",
+//   "entry-[]-resource-type-coding-[]-code",
+//   "entry-[]-resource-type-coding-[]-display",
+//   "entry-[]-resource-category[]-coding-system",
+//   "entry-[]-resource-category[]-coding-code",
+//   "entry-[]-resource-category[]-coding-display",
+//   "entry-[]-resource-subject-reference",
+//   "entry-[]-resource-subject-type-display",
+//   "entry-[]-resource-subject-encounter-reference",
+//   "entry-[]-resource-subject-encounter-type",
+//   "entry-[]-resource-subject-encounter-display",
+//   "entry-[]-resource-date",
+//   "entry-[]-resource-author-[]-reference",
+//   "entry-[]-resource-author-[]-type",
+//   "entry-[]-resource-author-[]-display",
+//   "entry-[]-resource-title",
+//   "entry-[]-resource-custodian-reference",
+//   "entry-[]-resource-custodian-type",
+//   "entry-[]-resource-custodian-display",
+//   "entry-[]-resource-event-[]-code-[]-text",
+//   "entry-[]-resource-event-[]-period-start",
+//   "entry-[]-resource-section-[]-title",
+//   "entry-[]-resource-section-[]-code-coding-[]-system",
+//   "entry-[]-resource-section-[]-code-coding-[]-code",
+//   "entry-[]-resource-section-[]-code-coding-[]-display",
+//   "entry-[]-resource-section-[]-text-status",
+//   "entry-[]-resource-section-[]-text-div",
+//   "entry-[]-resource-section-[]-entry-[]-reference",
+//   "entry-[]-resource-section-[]-entry-[]-type",
+//   "entry-[]-resource-section-[]-entry-[]-display",
+//   "entry-[]-fullUrl",
+//   "entry-[]-resource-resourceType",
+//   "entry-[]-resource-id",
+//   "entry-[]-resource-meta-lastUpdated",
+//   "entry-[]-resource-meta-profile-[]",
+//   "entry-[]-resource-language",
+//   "entry-[]-resource-text-status",
+//   "entry-[]-resource-text-div",
+//   "entry-[]-resource-identifier-[]-system",
+//   "entry-[]-resource-identifier-[]-value",
+//   "entry-[]-resource-active",
+//   "entry-[]-resource-name-[]-extension-[]-url",
+//   "entry-[]-resource-name-[]-extension-[]-valueCode",
+//   "entry-[]-resource-name-[]-text", //表示
+//   "entry-[]-resource-name-[]-famiry",
+//   "entry-[]-resource-name-[]-",
+// ];
+//次429行
+
+
+// let fhirEntrysJson = getJsonEntrys();
+
+
+let commonUseKey = ["resourceType", "lastUpdated", "profile"];
+let rows = [
+  {
+    "resourceType": "Composition",
+    "name": "bbb",
+    "category": "ccc",
+    "quantity": "1"
+  },
+  {
+    "code": "ddd",
+    "name": "eee",
+    "category": "fff",
+    "quantity": "2"
+  },
+];
+
+function readJsonEntrys(){
+  let entrys = fhirJson.entry;
+  for(let entry of entrys){
+    const rType = entry["resource"]["resourceType"];
+    fhirEntrysJson[rType].push(entry);
+  }
+}
+
+// console.log(fhirEntrysJson);
+
+// function readJsonKeyFmt(json, fmt) {
+//   let keys = fmt.split("-");
+//   let result = {};
+//   for(let key of keys){
+//     let val = json[key];
+//     if(key == "[]"){
+//     //   const arr = 
+//       for(let v of val){
+
+//       }
+//     }
+    
+//   }
+// }
+
+// readJsonKeyFmt(fhirJson, "entry-[]-resource-resourceType");
+
+// const contentJSON = fhirJson;
+// let rows: any = {};
+// function dispRecurse(d: any) {
+//   if (typeof d != 'object' || d == null) return;
+
+//   for (const key in d) {
+//     let val = d[key];
+
+//     if (typeof val == "object") {
+//       dispRecurse(val)
+//       continue;
+//     }
+
+//     if (rows[key] == undefined) rows[key] = val;
+//     else rows[key] += ", " + val;
+//     rows[key] = rows[key]
+//   }
+// }
+
+// dispRecurse(contentJSON);
+// dispRecurse(products);
+function main(){
+  readJsonEntrys();
+
+}
+
+</script>
+
+<template>
+  <h1>電子カルテ一覧</h1>
+  <toolbar style="margin-bottom: 2rem;" />
+
+
+  <Tabs value="0">
+    <TabList>
+      <Tab value={{ idx }} v-for="(type, idx) in resourceTypes">{{ type }}</Tab>
+    </TabList>
+
+    <TabPanels>
+      <TabPanel value="0">
+
+      </TabPanel>
+      <TabPanel value="1">
+        <p class="m-0">
+        <div v-for="rowJson in rows">
+          <row :rowJson=rowJson />
+        </div>
+        </p>
+      </TabPanel>
+      <TabPanel value="2">
+        <p class="m-0">
+          At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
+          atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique
+          sunt in culpa
+          qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et
+          expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
+        </p>
+      </TabPanel>
+    </TabPanels>
+  </Tabs>
+
+  <p class="m-0">
+  <div v-for="rowJson in rows">
+    <row :rowJson=rowJson />
+  </div>
+  </p>
+
+</template>
+
+<style>
+TabList {
+  display: inline-block;
+}
+</style>

@@ -1,0 +1,51 @@
+{
+    "resourceTypes": [
+        "Composition",
+        "Patient",
+        "Practitioner",
+        "Organization",
+        "Encounter",
+        "Condition",
+        "Observation",
+        "AllergyIntolerance",
+        "FamilyMemberHistory",
+        "MedicationRequest",
+        "Bundle",
+        "CarePlan",
+        "Procedure",
+        "ImagingStudy",
+        "DiagnosticReport",
+        "Device",
+        "DeviceUseStatement",
+        "Immunization",
+        "Consent",
+        "RelatedPerson",
+        "ResearchStudy",
+        "ResearchSubject",
+        "DocumentReference"
+    ],
+    "commonUseItemMap" : {
+    },
+    "useItemMap" : {
+        "リソースタイプ" : ["entry"],
+        "最終更新" : [],
+        "プロファイル" : [],
+        "種類" : [],
+        "カテゴリー" : [],
+        "author" : [],
+        "タイトル" : [],
+        "管理者" : [],
+        "ステータス" : [],
+        "組織住所" : [],
+        "組織名" : [],
+        "組織電話番号" : [],
+        "臨床状態" : [],
+        "診察日" : [],
+        "発症日" : [],
+        "診察医者名" : [],
+        "アレルギー" : [],
+        "診察結果" : []
+        
+    }
+
+}
