@@ -78,7 +78,9 @@ function getKeyFmts(json: any) {
   return keyFmtBuf;
 }
 
-
+/////////////////////////////////////////////////////
+//  後で使うかもしれない処理だから、コメントで残す //
+///////////////////////////////////////////////////
 // function getJsonRef(json: any, keyFmt: any) {
 //   const keys = keyFmt.split("-");
 //   let lastKey = "";
@@ -144,9 +146,3 @@ function parseTreeData(json: any, nowNumKey: any = "") {
   <h1>紹介状情報</h1>
   <Tree :value="treeData" class="w-full md:w-[30rem]"></Tree>
 </template>
-
-<style>
-TabList {
-  display: inline-block;
-}
-</style>
